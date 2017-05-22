@@ -9,6 +9,7 @@
     import HeaderBar from '../components/HeaderBar.vue'
     import HeaderTabs from '../components/HeaderTabs.vue'
     import FooterNav from '../components/FooterNav.vue'
+    import axios from 'axios'
     export default {
         components: {
             FooterNav,

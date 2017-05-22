@@ -9,7 +9,7 @@
 
 <style >
 .HeaderBar{
-  position:relative;
+  position:fixed;
     margin-top:-5rem;;
 }
 .appbar-search-field {
