@@ -21,6 +21,21 @@
             return {
                 value: '默认文字'
             }
+        },
+        methods:{
+            login(){
+                let that = this
+                axios.post('https://www.vue-js.com/api/v1/accesstoken',{
+                    accesstoken:that.val
+                })
+                .then(function(response){
+                 that.error=''
+                //  使用localStorage API 
+                        localStorage.setItem('accesstoken', that.val)
+                        localStorage.setItem('user_id', response.data.id)
+                        localStorage.setItem('loginname', response.data.loginname)
+                })
+            }
         }
     }
 </script>

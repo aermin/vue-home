@@ -6,7 +6,7 @@ import message from '../pages/message'
 import my from '../pages/my'
 import publish from '../pages/publish'
 import login from '../pages/login'
-
+import more from '../pages/more'
 
 
 Vue.use(Router)
@@ -37,6 +37,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/more',
+      name: 'more',
+      component: more
     }
   ]
 })

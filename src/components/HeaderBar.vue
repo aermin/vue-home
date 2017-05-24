@@ -1,8 +1,8 @@
 <template>
 <mu-appbar class="HeaderBar">
 <img class="logo" src="https://www.vue-js.com/public/images/vue.png">
-  <mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="请输入搜索内容"/>
-  
+  <!--<mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="请输入搜索内容"/>-->
+<mu-icon-button  icon="email" to="/message" slot="right"/>  
   <!--<mu-flat-button color="white" label="确认" slot="right"/> -->
 </mu-appbar>
 </template>
@@ -30,8 +30,8 @@
 }*/
 
 .logo{
-  width:5rem;
-  height:5rem;
+  width:4rem;
+  height:4rem;
   position:absolute;
   left:0;
   top:0;
