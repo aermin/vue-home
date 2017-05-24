@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <HeaderBar></HeaderBar>   
-        <HeaderTabs></HeaderTabs>
+        <HeaderTabs class="tab"></HeaderTabs>
         <FooterNav></FooterNav>
     </div>
 </template>
@@ -24,5 +24,14 @@
     }
 </script>
 <style scoped>
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100rem;  
+}
 
+.tab {
+    /*flex: 1;*/
+    margin: 3rem 0 5rem 0;
+}
 </style>

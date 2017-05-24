@@ -29,7 +29,7 @@
     .login {
         position: relative;
         margin-top: -5rem;
-        ;
+        
     }
     
     .login-key {
