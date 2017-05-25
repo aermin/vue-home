@@ -7,7 +7,7 @@
 </mu-appbar>
 </template>
 
-<style >
+<style scoped>
 .HeaderBar{
   position:fixed;
     margin-top:-5rem;;

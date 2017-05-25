@@ -31,7 +31,7 @@
 }
 
 .tab {
-    /*flex: 1;*/
+    flex: 1;
     margin: 3rem 0 5rem 0;
 }
 </style>

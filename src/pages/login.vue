@@ -5,13 +5,14 @@
             <span class="my-news-title">登录</span>
         </mu-appbar>
         <div class="login-key">
-            <mu-text-field label="请输入accessToken" hintText="accessToken" type="password" labelFloat/><br>
-            <mu-raised-button label="登录" class="demo-raised-button" primary/>
+            <mu-text-field label="请输入accessToken"  v-model="val" :errorText="error" hintText="accessToken" type="password" labelFloat/><br>
+            <mu-raised-button @click="login" label="登录" class="demo-raised-button" primary/>
         </div>
         <FooterNav></FooterNav>
     </div>
 </template>
 <script>
+  import axios from 'axios'
     import FooterNav from '../components/FooterNav.vue'
     export default {
         components: {
@@ -19,7 +20,8 @@
         },
         data() {
             return {
-                value: '默认文字'
+              val: '',
+                error: ''
             }
         },
         methods:{
@@ -34,7 +36,22 @@
                         localStorage.setItem('accesstoken', that.val)
                         localStorage.setItem('user_id', response.data.id)
                         localStorage.setItem('loginname', response.data.loginname)
+                          that.$router.push({
+                            path: '/my'
+                        })
                 })
+                  .catch(function(error) {
+                        if(!that.val){
+                              that.error = 'accesstoken不能为空'
+                        }else{
+                        console.log('error')
+                        that.error = '输入错误，请重新输入'
+                        console.log(that.$route.matched)
+                        that.$route.matched[0].meta = {
+                            requiresAuth: true
+                        }
+                        }
+                    })
             }
         }
     }
