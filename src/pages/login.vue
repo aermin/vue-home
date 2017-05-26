@@ -1,12 +1,18 @@
 <template>
     <div class="login">
         <mu-appbar>
-            <mu-icon-button icon="help_outline" href="https://www.vue-js.com/api/" slot="right" />
+            <!--<mu-icon-button icon="help_outline" href="https://www.vue-js.com/api/" slot="right" />-->
             <span class="my-news-title">登录</span>
+            <a href="https://www.vue-js.com/signup" class="signup">注册</a>
         </mu-appbar>
         <div class="login-key">
             <mu-text-field label="请输入accessToken"  v-model="val" :errorText="error" hintText="accessToken" type="password" labelFloat/><br>
-            <mu-raised-button @click="login" label="登录" class="demo-raised-button" primary/>
+            
+            <mu-raised-button @click="login" label="登录" class="demo-raised-button" primary/><br>
+        </div>
+        <div class="get-aT">
+            <mu-raised-button icon="help_outline" label="如何获取accessToken" class="demo-snackbar-button" @click="showSnackbar"/>
+        <mu-snackbar v-if="snackbar" message="登录vue.js中文社区，，在设置页面可看到自己的accessToken" action="关闭" @actionClick="hideSnackbar" @close="hideSnackbar"/>
         </div>
         <FooterNav></FooterNav>
     </div>
@@ -21,10 +27,20 @@
         data() {
             return {
               val: '',
-                error: ''
+                error: '',
+                 snackbar: false
             }
         },
         methods:{
+            showSnackbar () {
+      this.snackbar = true
+      if (this.snackTimer) clearTimeout(this.snackTimer)
+      this.snackTimer = setTimeout(() => { this.snackbar = false }, 5000)
+    },
+    hideSnackbar () {
+      this.snackbar = false
+      if (this.snackTimer) clearTimeout(this.snackTimer)
+    },
             login(){
                 let that = this
                 axios.post('https://www.vue-js.com/api/v1/accesstoken',{
@@ -68,7 +84,10 @@
         position: relative;
         margin-top: 14rem;
     }
-    
+    .signup{
+        font-size: 1.6rem;
+         float: right;
+    }
     .demo-raised-button {
         margin-top: 6rem;
     }
@@ -78,11 +97,12 @@
         padding-left: 2rem;
     }
     
-    .test {
-        display: inline-block;
-    }
     
     .my-news-title {
-        padding-left: 5rem;
+        padding-left: 3rem;
+    }
+    .get-aT{
+        margin-top: 2rem;
+        font-size: 1.2rem;
     }
 </style>

@@ -24,7 +24,7 @@
                               <span v-else-if="item.tab === 'share'" :style="styleObj">分享</span>
                               <span v-else-if="item.tab === 'ask'" :style="styleObj">问答</span>
                               <span v-else-if="item.tab === 'job'" :style="styleObj">招聘</span>
-                              <h3>{{item.title}}</h3>
+                              <strong>{{item.title}}</strong>
                           </div>
                         
                           <div class="timer">
@@ -57,7 +57,7 @@
             styleObj: {
           backgroundColor: '#C5C5C7'
         },
-       url: 'https://www.vue-js.com/api/v1/topics?tab=all',
+       url:'https://www.vue-js.com/api/v1/topics?tab=all',
         page: 1
       }
     },
@@ -68,7 +68,14 @@
         this.scroller = this.$el
     },
     methods: {
-      getData() {
+        handleTabChange(val) {
+            this.page = 1 //切换tab，页数重置为第一页
+            this.nomore = false //切换tab，重置
+            this.activeTab = val
+            this.url = 'https://www.vue-js.com/api/v1/topics?tab=' + val
+            this.getData()
+        },
+            getData() {
             let that = this
                 // let url = 'http://www.vue-js.com/api/v1/topics?tab=all'
                 // let url = this.url + '&page=' + this.num
@@ -76,12 +83,12 @@
                 that.items = response.data.data
                     // console.log(that.items)
             })
-      },
+      },   
    loadMore() {
             if (!this.nomore) {
                 this.loading = true
                 this.page +=1
-                let url = this.url + '&page=' + this.page
+                let url =  'https://www.vue-js.com/api/v1/topics?tab=all' + '&page=' + this.page
                 let arr = []
                 setTimeout(() => {
                     let that = this
@@ -98,13 +105,6 @@
                     this.loading = false
                 }, 1000)
             }
-        },
-        handleTabChange(val) {
-            this.page = 1 //切换tab，页数重置为第一页
-            this.nomore = false //切换tab，重置
-            this.activeTab = val
-            this.url = 'https://www.vue-js.com/api/v1/topics?tab=' + val
-            this.getData()
         }
     }
   
@@ -168,14 +168,11 @@
     padding: 0.2rem;
     border-radius: 0.2rem;
      font-size: 1rem;
-     float: left;
      margin-right:0.5rem;
      
   }
   
-  .list_title>h3 {
-    display: inline;
-    font-weight: 700;
+  .list_title strong {
     font-size: 1.4rem;
     
   }

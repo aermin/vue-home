@@ -38,10 +38,12 @@
       </mu-list-item>
     </mu-list>
     <!--</mobile-tear-sheet>-->
-     <mu-raised-button label="退出登录" @click="logout" class="demo-raised-button" primary/>
+  
+  
     <FooterNav></FooterNav>
   </div>
 </template>
+
 <script>
   import axios from 'axios'
   import FooterNav from '../components/FooterNav.vue'
@@ -58,7 +60,6 @@
     },
     created() {
       this.accesstoken = localStorage.getItem("accesstoken")
-      // alert(this.accesstoken)
       this.getData()
       // this.oldGetData()
     },
@@ -81,16 +82,18 @@
             that.user_msg = response.data.data
             console.log(that.user_msg)
           })
-      },   
-    logout(){
-       localStorage.removeItem('accesstoken')
-            localStorage.removeItem('user_id')
-            localStorage.removeItem('loginname')
-     this.$router.push({
-       path:"/"
-     })
+      }
+      // ,
+      // oldGetData(){
+      //    let that = this
+      //   axios.get("https://www.vue-js.com/api/v1/topic_collec")
+      //     .then(function(response) {
+      //       that.item = response.data.data
+      //       console.log(that.item)
+      //     })
+      // }
     }
-  }
+  
   }
 </script>
 
@@ -160,8 +163,5 @@
   .list-item mu-list-item{
     color: red;
     background-color: red;
-  }
-  .demo-raised-button{
-    margin-top: 2rem;
   }
 </style>

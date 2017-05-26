@@ -6,6 +6,15 @@
   <mu-tab value="tab1" icon="visibility_off" title="未读消息"/>
   <mu-tab value="tab2" icon="visibility" title="已读消息"/>
 </mu-tabs>-->
+<!--<mu-appbar title="Title">
+  <mu-list-item  disabled>
+    <mu-avatar slot="left" src=""/>
+  </mu-list-item>
+  <mu-flat-button to="/" label="立即登录" slot="right"/>
+     <mu-icon-button icon="chevron_right" slot="right"/>
+</mu-appbar>-->
+
+
  <FooterNav></FooterNav>
 </div>
 
