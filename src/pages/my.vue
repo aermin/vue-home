@@ -16,32 +16,33 @@
   
       <mu-list-item class="my-information-firstitem list-item" title="最近的话题" v-if="user_msg.recent_topics" toggleNested :open="false">
         <mu-icon slot="left" value="chat" />
-        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.recent_topics" :key="item.id" slot="nested" title="Starred">
+        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.recent_topics" :key="item.id" slot="nested" title="Starred" :title="item.title">
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
         <span class="msg-num">{{user_msg.recent_topics.length}}</span>
       </mu-list-item>
-      <mu-list-item class="list-item"  v-if="user_msg.recent_replies" title="最近的回复" toggleNested :open="false" >
+      <mu-list-item class="list-item" v-if="user_msg.recent_replies" title="最近的回复" toggleNested :open="false">
         <mu-icon slot="left" value="public" />
-        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.recent_replies":key="item.id" slot="nested" title="Starred"  :title="item.title"  >
+        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.recent_replies" :key="item.id" slot="nested" title="Starred" :title="item.title">
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
-         <span class="msg-num">{{user_msg.recent_replies.length}}</span>
+        <span class="msg-num">{{user_msg.recent_replies.length}}</span>
       </mu-list-item>
       <mu-list-item class="list-item" v-if="user_msg.collect_topics" title="收藏的话题" toggleNested :open="false">
-        <mu-icon  slot="left" value="star" />
-        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.collect_topics" :key="item.id"   slot="nested" title="Starred" :title="item.title" :afterText="item.last_reply_at| formatDate">
-         <!--<span class="topic-updata">话题更新：{{item.last_reply_at| formatDate }}</span>-->
+        <mu-icon slot="left" value="star" />
+        <mu-list-item class="list-item-content" :to="{path:'/content',query:{id:item.id}}" v-for="item in user_msg.collect_topics" :key="item.id" slot="nested" title="Starred" :title="item.title" :afterText="item.last_reply_at| formatDate">
+          <!--<span class="topic-updata">话题更新：{{item.last_reply_at| formatDate }}</span>-->
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
         <span class="msg-num">{{user_msg.collect_topics.length}}</span>
       </mu-list-item>
     </mu-list>
     <!--</mobile-tear-sheet>-->
-     <mu-raised-button label="退出登录" @click="logout" class="demo-raised-button" primary/>
+    <mu-raised-button label="退出登录" @click="logout" class="demo-raised-button" primary/>
     <FooterNav></FooterNav>
   </div>
 </template>
+
 <script>
   import axios from 'axios'
   import FooterNav from '../components/FooterNav.vue'
@@ -79,18 +80,18 @@
         axios.get("https://www.vue-js.com/api/v1/user/" + that.user.loginname)
           .then(function(response) {
             that.user_msg = response.data.data
-            console.log(that.user_msg)
+            // console.log(that.user_msg)
           })
-      },   
-    logout(){
-       localStorage.removeItem('accesstoken')
-            localStorage.removeItem('user_id')
-            localStorage.removeItem('loginname')
-     this.$router.push({
-       path:"/"
-     })
+      },
+      logout() {
+        localStorage.removeItem('accesstoken')
+        localStorage.removeItem('user_id')
+        localStorage.removeItem('loginname')
+        this.$router.push({
+          path: "/"
+        })
+      }
     }
-  }
   }
 </script>
 
@@ -99,7 +100,7 @@
     position: relative;
     margin-top: -5rem;
   }
- 
+  
   .my-content {
     position: relative;
     text-align: left;
@@ -120,20 +121,24 @@
     width: 5rem;
     margin-left: 1rem;
   }
+  
   .name {
     font-size: 1.6rem;
   }
-   .list-item-content{
+  
+  .list-item-content {
     position: relative;
-    border:0.1rem solid #EFF2F7;
-     margin: 0.6rem;  
+    border: 0.1rem solid #EFF2F7;
+    margin: 0.6rem;
   }
-  .topic-updata{
+  
+  .topic-updata {
     float: right;
-     background-color: #f5f5f5;
-     border-radius: .1rem;
-     margin-top: 2rem;
+    background-color: #f5f5f5;
+    border-radius: .1rem;
+    margin-top: 2rem;
   }
+  
   .timer {
     text-align: left;
     padding: 0.2rem 0 0 8rem;
@@ -155,13 +160,15 @@
     border-radius: 100%;
     position: absolute;
     right: 4rem;
-    top:1.2rem;
+    top: 1.2rem;
   }
-  .list-item mu-list-item{
+  
+  .list-item mu-list-item {
     color: red;
     background-color: red;
   }
-  .demo-raised-button{
+  
+  .demo-raised-button {
     margin-top: 2rem;
   }
 </style>

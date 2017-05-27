@@ -8,6 +8,7 @@ import publish from '../pages/publish'
 import login from '../pages/login'
 import more from '../pages/more'
 import content from '../pages/content'
+import people from '../pages/people'
 
 
 Vue.use(Router)
@@ -52,6 +53,11 @@ export default new Router({
       path: '/content',
       name: 'content',
       component: content
+    },
+     {
+      path: '/people',
+      name: 'people',
+      component: people
     }
   ]
 })
