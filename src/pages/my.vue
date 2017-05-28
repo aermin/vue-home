@@ -4,7 +4,7 @@
       <mu-icon-button icon="email" to="/vue-home/dist/message" slot="right" />
       <span class="my-news-title">个人中心</span>
     </mu-appbar>
-    <mu-list>
+    <mu-list class="main">
       <div class="my-information">
         <img :src="user_msg.avatar_url" alt="user">
         <div class="timer">

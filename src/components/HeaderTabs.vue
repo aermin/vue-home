@@ -112,6 +112,7 @@
   .HeaderTabs {
     overflow: auto;
     height: 100vh;
+  
     .tabs {
       margin-top: 4rem;
       height: 4rem;
@@ -121,6 +122,7 @@
       right: 0;
       display: flex;
       justify-content: space-around;
+        
     }
   }
   
@@ -133,6 +135,7 @@
     display: flex;
     border-bottom: 0.6rem solid #EFF2F7;
     padding: 1rem;
+   
     >img {
       width: 3rem;
       height: 3rem;

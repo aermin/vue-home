@@ -2,6 +2,7 @@
 <div class="wrapper">
   <mu-appbar title="更多" class="header">
   </mu-appbar>
+  <div class="main">
   <mu-list>
     <mu-list-item  class="my-content"  title="项目API" href="https://www.vue-js.com/api/">
       <mu-icon slot="left" value="loyalty" />
@@ -11,6 +12,7 @@
     </mu-list-item>
   </mu-list>
  <FooterNav></FooterNav>
+  </div>
 </div>
 
 </template>

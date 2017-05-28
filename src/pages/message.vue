@@ -2,7 +2,8 @@
   <div class="wrapper">
     <mu-appbar class="header" title="我的消息">
     </mu-appbar>
-    <div class="main" v-if="accesstoken">
+    <div class="main">
+    <div class="content" v-if="accesstoken">
       <mu-list-item class="list-item" title="未读消息" v-if="readMsg.hasnot_read_messages" toggleNested :open="false">
         <mu-icon slot="left" value="visibility_off" />
         <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.topic.id}}" v-for="item in readMsg.hasnot_read_messages" :key="item.id" slot="nested" :title="item.title">
@@ -29,6 +30,7 @@
       <mu-raised-button to="/vue-home/dist/login" label="请先登录" class="demo-raised-button" primary/>
     </div>
     <FooterNav></FooterNav>
+    </div>
   </div>
 </template>
 
@@ -67,7 +69,7 @@
   @import '../assets/sass/_base.scss';
   .wrapper {
     @include wrapper;
-    .main {
+    .content {
       margin: 1rem 0 3rem 0;
       .list-item {
         text-align: left;

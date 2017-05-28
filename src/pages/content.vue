@@ -9,7 +9,9 @@
                 <mu-menu-item title="返回首页" to="/vue-home/dist" />
             </mu-icon-menu>
         </mu-appbar>
+          <div class="main">
         <!--标题-->
+      
         <div id="content-tip">
             <span v-if="data.top">置顶</span>
             <span v-else-if="data.good">精华</span>
@@ -61,6 +63,7 @@
             <mu-raised-button label="评论" class="demo-raised-button" primary/>
         </div>
         <mu-toast v-if="!accesstoken" message="点赞评论请先登录" />
+          </div>
     </div>
 </template>
 

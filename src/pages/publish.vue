@@ -1,8 +1,9 @@
 <template>
-<div class="my-news">
-  <mu-appbar title="发布帖子">
+<div class="wrapper">
+  <mu-appbar title="发布帖子" class="header">
     <mu-icon-button @click="goback" icon="arrow_back" slot="left" />
   </mu-appbar>
+
 </div>
 
 </template>
@@ -25,10 +26,9 @@ export default {
   }
 }
 </script>
-<style scoped>
-.my-news{
- position:relative;
- margin-top:-5rem;;
-}
-
+<style lang="scss" scoped>
+    @import '../assets/sass/_base.scss';
+    .wrapper {
+      @include wrapper;
+    }
 </style>
