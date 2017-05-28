@@ -10,6 +10,8 @@ css用scss，flex布局，rem做移动端适配，三端适配。
 
 用localStorage做缓存
 
+[demo](http://www.hxvin.me/vue-home/dist/)
+
 手机扫描查看效果
 ![手机扫描查看效果](https://github.com/Hxvin/vue-home/blob/master/src/assets/1495982696.png)
 
