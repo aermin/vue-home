@@ -278,6 +278,7 @@
             }
         }
         #comments-input {
+            text-align: center;
             margin: 1rem;
         }
     }
