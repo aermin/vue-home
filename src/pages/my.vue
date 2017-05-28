@@ -35,7 +35,10 @@
         </mu-list-item>
         <span class="msg-num">{{user_msg.collect_topics.length}}</span>
       </mu-list-item>
-      <mu-raised-button label="退出登录" @click="logout" class="demo-raised-button" primary/>
+      <div class="logout">
+        <mu-raised-button label="退出登录" @click="logout" class="demo-raised-button" primary/>
+        </div>
+
     </mu-list>
     <!--</mobile-tear-sheet>-->
     
@@ -116,7 +119,6 @@
     font-size: 1.6rem;
   }
    .timer {
-    text-align: left;
     padding: 0.2rem 0 0 8rem;
     font-size: 1.2rem;
   }
@@ -126,7 +128,6 @@
   }
   
   .list-item {
-    text-align: left;
     .list-item-content {
     position: relative;
     border: 0.1rem solid #EFF2F7;
@@ -145,9 +146,13 @@
     top: 1.2rem;
   }
   }
-  .demo-raised-button {
+  .logout{
+    text-align: center;
+     .demo-raised-button {
     margin-top: 2rem;
   }
+  }
+ 
    }
  
 </style>

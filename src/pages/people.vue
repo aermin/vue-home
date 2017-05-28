@@ -5,7 +5,7 @@
       <mu-icon-button icon="email" to="/vue-home/dist/message" slot="right" />
       <span class="my-news-title">个人中心</span>
     </mu-appbar>
-    <mu-list>
+    <mu-list class="main">
       <div class="my-information">
         <img :src="peopleUsg.avatar_url" alt="user">
         <div class="timer">
@@ -14,7 +14,6 @@
           <span>注册时间：{{peopleUsg.create_at | formatDate }}</span>
         </div>
       </div>
-  
       <mu-list-item class="my-information-firstitem list-item" title="最近的话题" v-if="peopleUsg.recent_topics" toggleNested :open="false">
         <mu-icon slot="left" value="chat" />
         <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.id}}" v-for="item in peopleUsg.recent_topics" :key="item.id" slot="nested" title="Starred" :title="item.title" :afterText="item.last_reply_at| formatDate">

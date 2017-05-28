@@ -33,7 +33,7 @@
             
         </div>
         <!--收藏-->
-       <div> <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" /></div>
+       <div class="collect"> <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" /></div>
         <!--正文 -->
         
         <div class="content-text" v-html="data.content"></div>
@@ -182,7 +182,6 @@
         #content-tip {
             position: relative;
             padding: 2rem;
-            text-align: left;
             @include border-btm;
             span {
                 position: relative;
@@ -227,8 +226,10 @@
             margin-top: 1.6rem;
             position: relative;
         }
+        .collect{
+            text-align:center;
+        }
         .content-text {
-            text-align: left;
             padding: 1rem;
         }
         #comments-main {
@@ -236,7 +237,6 @@
             @include border-btm;
             padding-bottom: 0.5rem;
             list-style-type: none;
-            text-align: left;
             .comments-num {
                 border-left: 0.3rem solid #fa8072;
                 font-size: 1.6rem;
