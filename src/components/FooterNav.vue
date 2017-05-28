@@ -1,10 +1,10 @@
 <template>
   <mu-paper class="bottomNav">
     <mu-bottom-nav :value="bottomNav" @change="handleChange">
-      <mu-bottom-nav-item value="首页" title="首页" icon="home" to="/" />
-      <mu-bottom-nav-item value="信息" title="信息" icon="email" to="/message" />
-      <mu-bottom-nav-item value="我的" title="我的" icon="perm_identity" :to="person_path" />
-      <mu-bottom-nav-item value="更多" title="更多" icon="chat" to="/more" />
+      <mu-bottom-nav-item value="首页" title="首页" icon="home" to="/vue-home/dist" />
+      <mu-bottom-nav-item value="信息" title="信息" icon="email" to="/vue-home/dist/message" />
+      <mu-bottom-nav-item value="我的" title="我的" icon="person" :to="person_path" />
+      <mu-bottom-nav-item value="更多" title="更多" icon="more" to="/vue-home/dist/more" />
       <!--<mu-bottom-nav-item value="测试" title="测试" icon="chat" to="/people" />-->
     </mu-bottom-nav>
   </mu-paper>
@@ -30,21 +30,21 @@
       facthData() {
         let accesstoken = localStorage.getItem("accesstoken")
         if (accesstoken) {
-          this.person_path = '/my'
+          this.person_path = '/vue-home/dist/my'
         } else {
-          this.person_path = '/login'
+          this.person_path = '/vue-home/dist/login'
   
         }
-        if (this.$route.path === '/') {
+        if (this.$route.path === '/vue-home/dist') {
           this.bottomNav = '首页'
         }
-        if (this.$route.path === '/message') {
+        if (this.$route.path === '/vue-home/dist/message') {
           this.bottomNav = '信息'
         }
-        if (this.$route.path === '/login' || this.$route.path === '/my') {
+        if (this.$route.path === '/vue-home/dist/login' || this.$route.path === '/vue-home/dist/my') {
           this.bottomNav = '我的'
         }
-        if (this.$route.path === '/more') {
+        if (this.$route.path === '/vue-home/dist/more') {
           this.bottomNav = '更多'
         }
       }

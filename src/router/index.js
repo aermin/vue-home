@@ -17,17 +17,17 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/vue-home/dist',
       name: 'index',
       component: index
     }, 
     {
-      path: '/message',
+      path: '/vue-home/dist/message',
       name: 'message',
       component: message
     },
     {
-      path: '/my',
+      path: '/vue-home/dist/my',
       name: 'my',
       //  meta: {
       //       requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
@@ -35,27 +35,27 @@ export default new Router({
       component: my
     },
     {
-      path: '/publish',
+      path: '/vue-home/dist/publish',
       name: 'publish',
       component: publish
     },
      {
-      path: '/login',
+      path: '/vue-home/dist/login',
       name: 'login',
       component: login
     },
     {
-      path: '/more',
+      path: '/vue-home/dist/more',
       name: 'more',
       component: more
     },
     {
-      path: '/content',
+      path: '/vue-home/dist/content',
       name: 'content',
       component: content
     },
      {
-      path: '/people',
+      path: '/vue-home/dist/people',
       name: 'people',
       component: people
     }

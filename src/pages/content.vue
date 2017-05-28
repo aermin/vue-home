@@ -6,7 +6,7 @@
                 <mu-menu-item title="顶部" href="#content-tip" />
                 <mu-menu-item title="评论区" href="#comments-main" />
                 <mu-menu-item title="写评论" href="#comments-input" />
-                <mu-menu-item title="返回首页" to="/" />
+                <mu-menu-item title="返回首页" to="/vue-home/dist" />
             </mu-icon-menu>
         </mu-appbar>
         <!--标题-->
@@ -21,7 +21,7 @@
     
         <!--内容相关-->
         <div class="content-about">
-            <router-link :to="{path:'/people',query:{user:data.author.loginname}}" alt="user">
+            <router-link :to="{path:'/vue-home/dist/people',query:{user:data.author.loginname}}" alt="user">
                 <img class="content-author-pic" v-if="data.author" :src="data.author.avatar_url" />
             </router-link>
             <span>作者：{{data.author.loginname}}</span>
@@ -39,7 +39,7 @@
         <ul id="comments-main">
             <li class="comments-num">{{data.replies.length}}条评论</li>
             <li v-for="(list,index) in data.replies" :key="list.id">
-                <router-link :to="{path:'/people',query:{user:list.author.loginname}}" alt="user">
+                <router-link :to="{path:'/vue-home/dist/people',query:{user:list.author.loginname}}" alt="user">
                     <img v-if="list.author" :src="list.author.avatar_url" />
                 </router-link>
                 <strong>{{list.author.loginname}}</strong>

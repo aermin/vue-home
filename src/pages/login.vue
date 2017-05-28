@@ -55,7 +55,7 @@
                         localStorage.setItem('user_id', response.data.id)
                         localStorage.setItem('loginname', response.data.loginname)
                         that.$router.push({
-                            path: '/my'
+                            path: '/vue-home/dist/my'
                         })
                     })
                     .catch(function(error) {
