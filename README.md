@@ -12,7 +12,7 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 
 >萌新通过这项目学习了很多东西，如果对您有帮助，请给萌新一个`star`以资鼓励，一起加油^ ^
 
-[demo](http://www.hxvin.me/vue-home/dist/)
+[效果预览](http://www.hxvin.me/vue-home/dist/)
 
 ## 手机扫描查看效果
 ![手机扫描查看效果](https://github.com/Hxvin/vue-home/blob/master/src/assets/1495982696.png)
