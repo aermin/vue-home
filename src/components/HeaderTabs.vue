@@ -75,8 +75,6 @@
       },
       getData() {
         let that = this
-        // let url = 'http://www.vue-js.com/api/v1/topics?tab=all'
-        // let url = this.url + '&page=' + this.num
         axios.get(this.url).then(function(response) {
           that.items = response.data.data
           // console.log(that.items)
@@ -110,6 +108,7 @@
 </script>
 
 <style scoped lang="scss">
+@import '../assets/sass/_base.scss';
   .HeaderTabs {
     overflow: auto;
     height: 100vh;
@@ -161,7 +160,7 @@
       .timer {
         display: flex;
         justify-content: space-between;
-        color: #999;
+        color: $gray;
         padding-top: 1rem;
       }
     }
