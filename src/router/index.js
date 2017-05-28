@@ -17,7 +17,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/vue-home',
+      path: '/vue-home/dist',
       name: 'index',
       component: index
     }, 
