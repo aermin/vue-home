@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <mu-appbar class="header"> 
+        <mu-appbar class="header">
             <span class="my-news-title">登录</span>
             <a href="https://www.vue-js.com/signup" class="signup">注册</a>
         </mu-appbar>
@@ -80,20 +80,22 @@
     .wrapper {
         @include wrapper;
         .my-news-title {
-            padding-left: 3rem;  
+            padding-left: 3rem;
         }
         .signup {
-                font-size: 1.6rem;
-                float: right;
-            }
+            font-size: 1.6rem;
+            float: right;
+        }
         .login-key {
+            text-align: center;
             position: relative;
             margin-top: 14rem;
             .demo-raised-button {
-        margin-top: 6rem;
-    }
+                margin-top: 6rem;
+            }
         }
         .get-aT {
+            text-align: center;
             margin-top: 2rem;
             font-size: 1.2rem;
         }

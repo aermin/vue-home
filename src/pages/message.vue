@@ -103,6 +103,7 @@
   }
   
   .message-tip {
+    text-align: center;
     font-size: 2.0rem;
     line-height: 100vh;
   }
