@@ -22,12 +22,12 @@ export default new Router({
       component: index
     }, 
     {
-      path: '/vue-home/message',
+      path: '/vue-home/dist/message',
       name: 'message',
       component: message
     },
     {
-      path: '/vue-home/my',
+      path: '/vue-home/dist/my',
       name: 'my',
       //  meta: {
       //       requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
@@ -35,27 +35,27 @@ export default new Router({
       component: my
     },
     {
-      path: '/vue-home/publish',
+      path: '/vue-home/dist/publish',
       name: 'publish',
       component: publish
     },
      {
-      path: '/vue-home/login',
+      path: '/vue-home/dist/login',
       name: 'login',
       component: login
     },
     {
-      path: '/vue-home/more',
+      path: '/vue-home/dist/more',
       name: 'more',
       component: more
     },
     {
-      path: '/vue-home/content',
+      path: '/vue-home/dist/content',
       name: 'content',
       component: content
     },
      {
-      path: '/vue-home/people',
+      path: '/vue-home/dist/people',
       name: 'people',
       component: people
     }

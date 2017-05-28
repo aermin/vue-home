@@ -1,7 +1,7 @@
 <template>
   <div class="my-news">
     <mu-appbar>
-      <mu-icon-button icon="email" to="/vue-home/message" slot="right" />
+      <mu-icon-button icon="email" to="/vue-home/dist/message" slot="right" />
       <span class="my-news-title">个人中心</span>
     </mu-appbar>
     <mu-list>
@@ -16,21 +16,21 @@
   
       <mu-list-item class="my-information-firstitem list-item" title="最近的话题" v-if="user_msg.recent_topics" toggleNested :open="false">
         <mu-icon slot="left" value="chat" />
-        <mu-list-item class="list-item-content" :to="{path:'/vue-home/content',query:{id:item.id}}" v-for="item in user_msg.recent_topics" :key="item.id" slot="nested" title="Starred" :title="item.title">
+        <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.id}}" v-for="item in user_msg.recent_topics" :key="item.id" slot="nested" title="Starred" :title="item.title">
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
         <span class="msg-num">{{user_msg.recent_topics.length}}</span>
       </mu-list-item>
       <mu-list-item class="list-item" v-if="user_msg.recent_replies" title="最近的回复" toggleNested :open="false">
         <mu-icon slot="left" value="public" />
-        <mu-list-item class="list-item-content" :to="{path:'/vue-home/content',query:{id:item.id}}" v-for="item in user_msg.recent_replies" :key="item.id" slot="nested" title="Starred" :title="item.title">
+        <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.id}}" v-for="item in user_msg.recent_replies" :key="item.id" slot="nested" title="Starred" :title="item.title">
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
         <span class="msg-num">{{user_msg.recent_replies.length}}</span>
       </mu-list-item>
       <mu-list-item class="list-item" v-if="user_msg.collect_topics" title="收藏的话题" toggleNested :open="false">
         <mu-icon slot="left" value="star" />
-        <mu-list-item class="list-item-content" :to="{path:'/vue-home/content',query:{id:item.id}}" v-for="item in user_msg.collect_topics" :key="item.id" slot="nested" title="Starred" :title="item.title" :afterText="item.last_reply_at| formatDate">
+        <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.id}}" v-for="item in user_msg.collect_topics" :key="item.id" slot="nested" title="Starred" :title="item.title" :afterText="item.last_reply_at| formatDate">
           <!--<span class="topic-updata">话题更新：{{item.last_reply_at| formatDate }}</span>-->
           <mu-icon slot="left" value="hdr_weak" />
         </mu-list-item>
@@ -88,7 +88,7 @@
         localStorage.removeItem('user_id')
         localStorage.removeItem('loginname')
         this.$router.push({
-          path: "/vue-home"
+          path: "/vue-home/dist"
         })
       }
     }

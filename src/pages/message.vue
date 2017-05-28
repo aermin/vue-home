@@ -5,7 +5,7 @@
     <div class="main" v-if="accesstoken">
       <mu-list-item class="list-item" title="未读消息" v-if="readMsg.hasnot_read_messages" toggleNested :open="false">
         <mu-icon slot="left" value="visibility_off" />
-        <mu-list-item class="list-item-content" :to="{path:'/vue-home/content',query:{id:item.topic.id}}" v-for="item in readMsg.hasnot_read_messages" :key="item.id" slot="nested" :title="item.title">
+        <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.topic.id}}" v-for="item in readMsg.hasnot_read_messages" :key="item.id" slot="nested" :title="item.title">
   
         </mu-list-item>
         <span class="msg-num">{{readMsg.hasnot_read_messages.length}}</span>
@@ -13,7 +13,7 @@
       <!--已读消息-->
       <mu-list-item class="list-item" v-if="readMsg.has_read_messages" title="已读消息" toggleNested :open="false">
         <mu-icon slot="left" value="visibility" />
-        <mu-list-item class="list-item-content" :to="{path:'/vue-home/content',query:{id:item.topic.id}}" v-for="item in readMsg.has_read_messages" :key="item.id" slot="nested" :title="item.title">
+        <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.topic.id}}" v-for="item in readMsg.has_read_messages" :key="item.id" slot="nested" :title="item.title">
           <span>来自<strong>{{item.author.loginname}}</strong></span>
   
           <span class="message-time">{{item.reply.create_at| formatDate}}</span><br>
@@ -26,7 +26,7 @@
       </mu-list-item>
     </div>
     <div v-if="!accesstoken" class="message-tip">
-      <mu-raised-button to="/vue-home/login" label="请先登录" class="demo-raised-button" primary/>
+      <mu-raised-button to="/vue-home/dist/login" label="请先登录" class="demo-raised-button" primary/>
     </div>
     <FooterNav></FooterNav>
   </div>
