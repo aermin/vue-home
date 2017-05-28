@@ -51,6 +51,6 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-* 注意`pm run dev` 之后 默认浏览器打开的是http://localhost:8080  请换成http://localhost:8080/vue-home/dist
+* 注意`npm run dev` 之后 默认浏览器打开的是http://localhost:8080  请换成http://localhost:8080/vue-home/dist
 
 > 之后我会总结下项目经验和遇到的坑，大家一起爬坑😀
