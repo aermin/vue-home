@@ -1,6 +1,6 @@
 <template>
-<div class="my-news">
-  <mu-appbar title="更多">
+<div class="wrapper">
+  <mu-appbar title="更多" class="header">
   </mu-appbar>
   <mu-list>
     <mu-list-item  class="my-content"  title="项目API" href="https://www.vue-js.com/api/">
@@ -33,11 +33,11 @@ export default {
   }
 }
 </script>
-<style scoped>
-.my-news{
- position:relative;
- margin-top:-5rem;;
-}
+<style lang="scss" scoped>
+  @import '../assets/sass/_base.scss';
+     .wrapper {
+      @include wrapper;
+     }
 
 .my-content{
     position:relative;

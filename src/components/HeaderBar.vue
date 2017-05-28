@@ -8,7 +8,8 @@
 <style scoped>
 .HeaderBar{
   position:fixed;
-    margin-top:-5rem;;
+  top: 0;
+  height: 5rem;
 }
 .appbar-search-field {
   color: #FFF;

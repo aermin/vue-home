@@ -55,7 +55,7 @@
 <style>
   .bottomNav {
     position: fixed;
-    bottom: 0rem;
+    bottom: 0;
     left: 0;
     right: 0;
   }
