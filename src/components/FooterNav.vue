@@ -2,7 +2,7 @@
   <mu-paper class="bottomNav">
     <mu-bottom-nav :value="bottomNav" @change="handleChange">
       <mu-bottom-nav-item value="首页" title="首页" icon="home" to="/" />
-      <mu-bottom-nav-item value="发布" title="发布" icon="open_in_browser" to="/publish" />
+      <mu-bottom-nav-item value="信息" title="信息" icon="email" to="/message" />
       <mu-bottom-nav-item value="我的" title="我的" icon="perm_identity" :to="person_path" />
       <mu-bottom-nav-item value="更多" title="更多" icon="chat" to="/more" />
       <!--<mu-bottom-nav-item value="测试" title="测试" icon="chat" to="/people" />-->
@@ -38,8 +38,8 @@
         if (this.$route.path === '/') {
           this.bottomNav = '首页'
         }
-        if (this.$route.path === '/publish') {
-          this.bottomNav = '发布'
+        if (this.$route.path === '/message') {
+          this.bottomNav = '信息'
         }
         if (this.$route.path === '/login' || this.$route.path === '/my') {
           this.bottomNav = '我的'

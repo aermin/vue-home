@@ -1,18 +1,13 @@
 <template>
 <div class="my-news">
   <mu-appbar title="发布帖子">
+    <mu-icon-button @click="goback" icon="arrow_back" slot="left" />
   </mu-appbar>
- <FooterNav></FooterNav>
 </div>
 
 </template>
 <script>
-
-import FooterNav from '../components/FooterNav.vue'
 export default {
-    components: {
-        FooterNav
-    },
   data () {
     return {
       activeTab: 'tab1'
@@ -21,7 +16,12 @@ export default {
   methods: {
     handleTabChange (val) {
       this.activeTab = val
-    }
+    },
+      goback() {
+        this.$router.go(-1)
+        // 后退一步记录，等同于 history.back()
+      }
+    
   }
 }
 </script>

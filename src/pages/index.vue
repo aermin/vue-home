@@ -1,10 +1,11 @@
 <template>
     <div class="wrapper">
-        <HeaderBar></HeaderBar>   
-        <HeaderTabs class="tab"></HeaderTabs>
+        <HeaderBar></HeaderBar>
+        <HeaderTabs class="tabs"></HeaderTabs>
         <FooterNav></FooterNav>
     </div>
 </template>
+
 <script>
     import HeaderBar from '../components/HeaderBar.vue'
     import HeaderTabs from '../components/HeaderTabs.vue'
@@ -23,15 +24,15 @@
         }
     }
 </script>
-<style scoped>
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100rem;  
-}
 
-.tab {
-    flex: 1;
-    margin: 3rem 0 5rem 0;
-}
+<style scoped lang="scss">
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        .tabs {
+            flex: 1;
+            margin: 3rem 0 5rem 0;
+        }
+    }
 </style>

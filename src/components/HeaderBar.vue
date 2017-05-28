@@ -1,9 +1,7 @@
 <template>
 <mu-appbar class="HeaderBar">
-<img class="logo" src="https://www.vue-js.com/public/images/vue.png">
-  <!--<mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="请输入搜索内容"/>-->
-<mu-icon-button  icon="email" to="/message" slot="right"/>  
-  <!--<mu-flat-button color="white" label="确认" slot="right"/> -->
+<img class="logo" src="../assets/logo.png">
+<mu-icon-button  icon="send" to="/publish" slot="right"/>  
 </mu-appbar>
 </template>
 
@@ -25,10 +23,6 @@
 .appbar-search-field .mu-text-field-input {
   color: #FFF;
 }
-/*.appbar-search-field .mu-text-field-focus-line {
-  background-color: #FFF;
-}*/
-
 .logo{
   width:4rem;
   height:4rem;

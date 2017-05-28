@@ -2,19 +2,11 @@
 <div class="my-news">
   <mu-appbar title="更多">
   </mu-appbar>
-
-
   <mu-list>
-      <!--<mu-list-item  class="my-content"  title="VUE2.0" href="http://doc.vue-js.com/">
-      <mu-icon slot="left" value="loyalty" />
-    </mu-list-item>-->
     <mu-list-item  class="my-content"  title="项目API" href="https://www.vue-js.com/api/">
       <mu-icon slot="left" value="loyalty" />
     </mu-list-item>
-    <!--<mu-list-item  class="my-content"  title="关于" href="https://www.vue-js.com/about">
-      <mu-icon slot="left" value="loyalty" />
-    </mu-list-item>-->
-    <mu-list-item  class="my-content"  title="给个star" href="https://github.com/Hxvin/vue-home">
+    <mu-list-item  class="my-content"  title="项目地址&给个star" href="https://github.com/Hxvin/vue-home">
       <mu-icon slot="left" value="star"  />
     </mu-list-item>
   </mu-list>

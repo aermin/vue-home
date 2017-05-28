@@ -1,15 +1,16 @@
 <template>
     <div class="wrapper">
-        <mu-appbar class="content-header" :title="data.title">
+        <mu-appbar class="header" :title="data.title">
             <mu-icon-button @click="goback" icon="arrow_back" slot="left" />
             <mu-icon-menu icon="more_vert" slot="right">
-                <mu-menu-item title="顶部" href="#" />
-                <mu-menu-item title="评论区" href="#comments" />
+                <mu-menu-item title="顶部" href="#content-tip" />
+                <mu-menu-item title="评论区" href="#comments-main" />
                 <mu-menu-item title="写评论" href="#comments-input" />
+                <mu-menu-item title="返回首页" to="/" />
             </mu-icon-menu>
         </mu-appbar>
         <!--标题-->
-        <div class="content-tip">
+        <div id="content-tip">
             <span v-if="data.top">置顶</span>
             <span v-else-if="data.good">精华</span>
             <span v-else-if="data.tab === 'share'" :style="styleObj">分享</span>
@@ -27,13 +28,15 @@
             <span>发表时间：{{data.create_at | formatDate}}</span><br>
             <span>最后回复：{{data.last_reply_at | formatDate}}</span>
             <span>浏览量：{{data.visit_count}}</span>
+            
         </div>
         <!--收藏-->
-        <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" />
+       <div> <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" /></div>
         <!--正文 -->
+        
         <div class="content-text" v-html="data.content"></div>
         <!--评论区-->
-        <ul id="comments">
+        <ul id="comments-main">
             <li class="comments-num">{{data.replies.length}}条评论</li>
             <li v-for="(list,index) in data.replies" :key="list.id">
                 <router-link :to="{path:'/people',query:{user:list.author.loginname}}" alt="user">
@@ -42,8 +45,8 @@
                 <strong>{{list.author.loginname}}</strong>
                 <!--点赞-->
                 <span class="comments-peopele-ups">
-                                      <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
-                                      </span>
+                 <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
+                      </span>
                 <!--时间-->
                 <span class="comments-peopele-time">{{list.create_at | formatDate}}</span><br>
                 <!--回复评论-->
@@ -86,7 +89,6 @@
             this.loginname = localStorage.getItem("loginname")
             this.getData()
             this.hasCollected()
-            // this.tip()
         },
         watch: {
             collect: function(newVal) {
@@ -109,7 +111,7 @@
                         // console.log(that.data)
                     })
             },
-              goback() {
+            goback() {
                 this.$router.go(-1)
                 // 后退一步记录，等同于 history.back()
             },
@@ -166,144 +168,114 @@
                     })
             }
     
-    
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../assets/sass/_base.scss';
     .wrapper {
-        height: 100vh;
-        box-sizing: border-box;
-    }
-    
-    .content-header {
-        position: fixed;
-        margin-top: -5rem;
-    }
-    
-    .demo-checkbox {
-        font-size: 1.6rem;
-        margin-top: 1.6rem;
-        position: relative;
-    }
-    
-    .content-about {
-        position: relative;
-        height: 5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px #EFF2F7 solid;
-        font-size: 1.2rem;
-        color: #808080;
-        text-align: left;
-        line-height: 2rem;
-    }
-    
-    .content-about span {
-        position: relative;
-        padding-left: 2rem;
-        top: 0.5rem;
-        left: 5rem;
-    }
-    
-    .content-author-pic {
-        position: absolute;
-        left: 0.6rem;
-        border-radius: 50%;
-        width: 4rem;
-        height: 4rem;
-        cursor: pointer;
-        top: 0.4rem;
-    }
-    
-    .content-tip {
-        position: relative;
-        padding: 2rem;
-        text-align: left;
-        border-bottom: 1px #EFF2F7 solid;
-    }
-    
-    .content-tip span {
-        position: relative;
-        background-color: #369219;
-        color: #fff;
-        padding: 0.2rem;
-        border-radius: 0.2rem;
-        font-size: 1rem;
-        bottom: 0.2rem;
-    }
-    
-    .content-tip strong {
-        font-size: 1.8rem;
-    }
-    
-    .content-text {
-        text-align: left;
-        padding: 1rem;
-    }
-    
-    #comments {
-        border-top: 1rem solid #EFF2F7;
-        border-bottom: 1rem solid #EFF2F7;
-        padding-bottom: 0.5rem;
-        list-style-type: none;
-        text-align: left;
-    }
-    
-    .comments-num {
-        border-left: 0.3rem solid #fa8072;
-        font-size: 1.6rem;
-        padding: 0.4rem 0.6rem;
-    }
-    
-    #comments li img {
-        border-radius: 50%;
-        width: 4rem;
-        height: 4rem;
-        cursor: pointer;
-        top: 0.4rem;
-    }
-    
-    #comments li {
-        position: relative;
-        margin-left: -1rem;
-        margin-top: 1rem;
-        margin-right: 1rem;
-        border-bottom: 0.1rem solid #dcdcdc;
-        /*padding-left: 2rem;*/
-        /*left: 5rem;*/
-    }
-    
-    #comments li strong {
-        position: relative;
-        font-size: 1.6rem;
-        bottom: 2.5rem;
-    }
-    
-    .comments-peopele-time {
-        position: absolute;
-        font-size: 1.2rem;
-        line-height: 2.2rem;
-    }
-    
-    #comments li p {
-        position: relative;
-    }
-    
-    .comments-peopele-ups {
-        /*position: relative;*/
-        float: right;
-        color: #a9a9a9;
-    }
-    
-    .textsms {
-        /*position: relative;*/
-        float: right;
-        margin-right: 0.5rem;
-    }
-    
-    #comments-input {
-        /*border:#dcdcdc 0.1rem solid;*/
-        margin: 1rem;
+      @include wrapper;
+        #content-tip {
+            position: relative;
+            padding: 2rem;
+            text-align: left;
+            @include border-btm;
+            span {
+                position: relative;
+                background-color: $class-green;
+                color: #fff;
+                padding: 0.2rem;
+                border-radius: 0.2rem;
+                font-size: 1rem;
+                bottom: 0.2rem;
+            }
+            strong {
+                font-size: 1.8rem;
+            }
+        }
+        .content-about {
+            position: relative;
+            height: 5rem;
+            padding-bottom: 1rem;
+            @include border-btm;
+            font-size: 1.2rem;
+            color: $gray;
+            text-align: left;
+            line-height: 2rem;
+            span {
+                position: relative;
+                padding-left: 2rem;
+                top: 0.5rem;
+                left: 5rem;
+            }
+            .content-author-pic {
+                position: absolute;
+                left: 0.6rem;
+                border-radius: 50%;
+                width: 4rem;
+                height: 4rem;
+                cursor: pointer;
+                top: 0.4rem;
+            }
+        }
+        .demo-checkbox {
+            font-size: 1.6rem;
+            margin-top: 1.6rem;
+            position: relative;
+        }
+        .content-text {
+            text-align: left;
+            padding: 1rem;
+        }
+        #comments-main {
+            border-top: 1rem solid #EFF2F7;
+            @include border-btm;
+            padding-bottom: 0.5rem;
+            list-style-type: none;
+            text-align: left;
+            .comments-num {
+                border-left: 0.3rem solid #fa8072;
+                font-size: 1.6rem;
+                padding: 0.4rem 0.6rem;
+            }
+            li {
+                position: relative;
+                margin: {
+                    left: -1rem;
+                    top: 1rem;
+                    right: 1rem;
+                }
+                @include border-btm;
+                img {
+                    border-radius: 50%;
+                    width: 4rem;
+                    height: 4rem;
+                    cursor: pointer;
+                    top: 0.4rem;
+                }
+                strong {
+                    position: relative;
+                    font-size: 1.6rem;
+                    bottom: 2.5rem;
+                }
+            }
+            .comments-peopele-ups {
+                float: right;
+                color: $gray;
+            }
+            .comments-peopele-time {
+                position: absolute;
+                font-size: 1.2rem;
+                line-height: 2.2rem;
+            }
+            .textsms {
+                float: right;
+                margin-right: 0.5rem;
+            }
+        }
+        #comments-input {
+            margin: 1rem;
+        }
     }
 </style>

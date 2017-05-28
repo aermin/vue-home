@@ -8,36 +8,35 @@
       <mu-tab value="ask" title="问答" />
       <mu-tab value="job" title="招聘" />
     </mu-tabs>
-    <mu-list class="tabs-content">
-      <template v-for="(item,index) in items">
-         <div class="list">
-                        <router-link
-                        :to="{path:'/people',query:{user:item.author.loginname}}"
-                        :src="item.author.avatar_url" 
-                        tag="img"
-                        alt="user"></router-link>
-                        <router-link :to="{path:'/content',query:{id:item.id}}" tag="div" class="content">
-                            <div class="list_title">
-                                <span v-if="item.top">置顶</span>
-                                <span v-else-if="item.good">精华</span>
-                                <span v-else-if="item.tab === 'share'" :style="styleObj">分享</span>
-                                <span v-else-if="item.tab === 'ask'" :style="styleObj">问答</span>
-                                <span v-else-if="item.tab === 'job'" :style="styleObj">招聘</span>
-                                <strong>{{item.title}}</strong>
-                            </div>
-                          
-                            <div class="timer">
-                                <span> <mu-icon value="chat" :size="14"/>{{item.reply_count}} &nbsp <mu-icon value="visibility" :size="14"/>{{item.visit_count}}</span>
-                                <span>{{item.last_reply_at | formatDate }}</span>
-                            </div>
-                        </router-link>
-                    </div>
-</template>
+    <mu-list>
+      <div v-for="(item,index) in items">
+               <div class="list">
+                              <router-link
+                              :to="{path:'/people',query:{user:item.author.loginname}}"
+                              :src="item.author.avatar_url" 
+                              tag="img"
+                              alt="user"></router-link>
+                              <router-link :to="{path:'/content',query:{id:item.id}}" tag="div" class="content">
+                                  <div class="list-title">
+                                      <span v-if="item.top">置顶</span>
+                                      <span v-else-if="item.good">精华</span>
+                                      <span v-else-if="item.tab === 'share'" :style="styleObj">分享</span>
+                                      <span v-else-if="item.tab === 'ask'" :style="styleObj">问答</span>
+                                      <span v-else-if="item.tab === 'job'" :style="styleObj">招聘</span>
+                                      <strong>{{item.title}}</strong>
+                                  </div>      
+                                  <div class="timer">
+                                      <span> <mu-icon value="chat" :size="14"/>{{item.reply_count}} &nbsp <mu-icon value="visibility" :size="14"/>{{item.visit_count}}</span>
+                                      <span>{{item.last_reply_at | formatDate }}</span>
+                                  </div>
+                              </router-link>
+                          </div>
+</div>
      <p class="nomore" v-show="nomore">内容到底啦</p>
   </mu-list>
- <section v-if="!items.length">
-            暂无话题
-        </section>
+ <div v-if="!items.length">
+            <strong>暂无话题</strong>
+        </div>
     <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
 </div>
 
@@ -110,20 +109,20 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .HeaderTabs {
     overflow: auto;
-  }
-  
-  .tabs {
-    margin-top: 4rem;
-    height: 4rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
+    height: 100vh;
+    .tabs {
+      margin-top: 4rem;
+      height: 4rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+    }
   }
   
   .mu-tab-link,
@@ -131,54 +130,41 @@
     white-space: nowrap;
   }
   
-  .tabs-content {
-    /*margin-top: 2rem;*/
-  }
-  
   .list {
     display: flex;
-    border-bottom: 1px solid #999;
+    border-bottom: 0.6rem solid #EFF2F7;
     padding: 1rem;
-  }
-  
-  .list>img {
-    width: 3rem;
-    height: 3rem;
-    /*border-radius: 50%;*/
-    margin-right: 1rem;
-  }
-  
-  .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .list_title {
-    /*display: flex;*/
-    text-align: left;
-  }
-  
-  .list_title>span {
-    /*white-space:nowrap;*/
-    background-color: #369219;
-    color: #fff;
-    padding: 0.2rem;
-    border-radius: 0.2rem;
-    font-size: 1rem;
-    margin-right: 0.5rem;
-  }
-  
-  .list_title strong {
-    font-size: 1.4rem;
-  }
-  
-  .timer {
-    display: flex;
-    justify-content: space-between;
-    color: #999;
-    padding-top: 1rem;
+    >img {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
+    }
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .list-title {
+        text-align: left;
+        >span {
+          background-color: #369219;
+          color: #fff;
+          padding: 0.2rem;
+          border-radius: 0.2rem;
+          font-size: 1rem;
+          margin-right: 0.5rem;
+        }
+        strong {
+          font-size: 1.4rem;
+        }
+      }
+      .timer {
+        display: flex;
+        justify-content: space-between;
+        color: #999;
+        padding-top: 1rem;
+      }
+    }
   }
   
   .nomore {

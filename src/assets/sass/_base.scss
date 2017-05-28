@@ -1,0 +1,15 @@
+$gray:#808080;
+$class-green:#369219;
+@mixin border-btm {
+  border-bottom: 0.1rem #dcdcdc solid;
+}
+
+@mixin wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    .header {
+      position: fixed;
+      margin-top: -5rem;
+    }
+}
