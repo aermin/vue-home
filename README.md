@@ -1,4 +1,4 @@
-# vue-home
+## vue-home
 
 >技术点 
 
@@ -14,7 +14,7 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 
 [效果预览](http://www.hxvin.me/vue-home/dist/)
 
-## 手机扫描查看效果
+### 手机扫描查看效果
 ![手机扫描查看效果](https://github.com/Hxvin/vue-home/blob/master/src/assets/1495982696.png)
 
 > 完成功能
@@ -36,7 +36,7 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 - [ ] 回复评论
 - [ ] 发布主题（支持markdown格式）
 
-## 安装运行
+### 安装运行
 
 ``` bash
 # install dependencies
@@ -54,3 +54,36 @@ npm run build --report
 * 注意`npm run dev` 之后 默认浏览器打开的是http://localhost:8080  请换成http://localhost:8080/vue-home/dist
 
 > 之后我会总结下项目经验和遇到的坑，大家一起爬坑😀
+
+### 项目结构图
+
+
+├── build
+│   ├── build.js
+│   ├── check-versions.js
+│   ├── dev-client.js
+│   ├── dev-server.js
+│   ├── utils.js
+│   ├── vue-loader.conf.js
+│   ├── webpack.base.conf.js
+│   ├── webpack.dev.conf.js
+│   └── webpack.prod.conf.js
+├── config
+│   ├── dev.env.js
+│   ├── index.js
+│   └── prod.env.js
+├── dist
+│   ├── index.html
+│   └── static
+├── index.html
+├── node_modules
+├── package.json
+├── src
+│   ├── App.vue
+│   ├── assets
+│   ├── components
+│   ├── main.js
+│   ├── pages
+│   ├── router
+│   └── util
+└── static
