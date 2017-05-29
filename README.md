@@ -57,7 +57,7 @@ npm run build --report
 
 ### 项目结构图
 
->
+```
 ├── build
 │   ├── build.js
 │   ├── check-versions.js
@@ -87,3 +87,4 @@ npm run build --report
 │   ├── router
 │   └── util
 └── static
+```
