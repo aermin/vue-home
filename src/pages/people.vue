@@ -1,4 +1,5 @@
 <template>
+<!--用户中心信息页面，也就是你点击用户头像进去的页面,和自己的个人中心信息页面差不多，是精简版-->
   <div class="wrapper">
     <mu-appbar class="header">
      <mu-icon-button @click="goback" icon="arrow_back" slot="left" />

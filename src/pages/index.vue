@@ -1,7 +1,11 @@
 <template>
+<!--首页-->
     <div class="wrapper">
+        <!--顶栏-->
         <HeaderBar></HeaderBar>
+        <!--顶部的tabs及列表内容-->
         <HeaderTabs class="tabs"></HeaderTabs>
+        <!--底部导航-->
         <FooterNav></FooterNav>
     </div>
 </template>
@@ -29,7 +33,7 @@
     .wrapper {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: 100vh;  
         .tabs {
             flex: 1;
             margin: 8rem 0 5rem 0;

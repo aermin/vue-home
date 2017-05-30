@@ -1,9 +1,11 @@
 <template>
   <div class="wrapper">
+    <!--我的消息  这个页面其实就是数据的拉取了 没啥功能-->
     <mu-appbar class="header" title="我的消息">
     </mu-appbar>
     <div class="main">
     <div class="content" v-if="accesstoken">
+      <!--未读信息-->
       <mu-list-item class="list-item" title="未读消息" v-if="readMsg.hasnot_read_messages" toggleNested :open="false">
         <mu-icon slot="left" value="visibility_off" />
         <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.topic.id}}" v-for="item in readMsg.hasnot_read_messages" :key="item.id" slot="nested" :title="item.title">
@@ -16,11 +18,9 @@
         <mu-icon slot="left" value="visibility" />
         <mu-list-item class="list-item-content" :to="{path:'/vue-home/dist/content',query:{id:item.topic.id}}" v-for="item in readMsg.has_read_messages" :key="item.id" slot="nested" :title="item.title">
           <span>来自<strong>{{item.author.loginname}}</strong></span>
-  
           <span class="message-time">{{item.reply.create_at| formatDate}}</span><br>
           <p class="message-content">{{item.reply.content}}</p>
           <span class="message-title">帖子：《{{item.topic.title}}》</span>
-  
           <span class="message-ups">获{{item.reply.ups.length}}个赞</span>
         </mu-list-item>
         <span class="msg-num">{{readMsg.has_read_messages.length}}</span>

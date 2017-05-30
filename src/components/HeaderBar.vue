@@ -1,6 +1,8 @@
 <template>
+<!--顶部bar-->
 <mu-appbar class="HeaderBar">
 <img class="logo" src="../assets/logo.png">
+<!--发布帖子 ===未完成-->
 <mu-icon-button  icon="send" to="/vue-home/dist/publish" slot="right"/>  
 </mu-appbar>
 </template>

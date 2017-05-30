@@ -1,4 +1,5 @@
 <template>
+<!--底部导航-->
   <mu-paper class="bottomNav">
     <mu-bottom-nav :value="bottomNav" @change="handleChange">
       <mu-bottom-nav-item value="首页" title="首页" icon="home" to="/vue-home/dist" />
@@ -20,6 +21,7 @@
     created() {
       this.facthData()
     },
+    // $route属性是响应式的，可以就使用一个 watcher去响应路由的改变
     watch: {
       '$route': 'facthData'
     },
@@ -33,7 +35,6 @@
           this.person_path = '/vue-home/dist/my'
         } else {
           this.person_path = '/vue-home/dist/login'
-  
         }
         if (this.$route.path === '/vue-home/dist') {
           this.bottomNav = '首页'

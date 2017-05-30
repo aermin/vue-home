@@ -1,12 +1,13 @@
 <template>
+ <!--登录页面-->
     <div class="wrapper">
         <mu-appbar class="header">
             <span class="my-news-title">登录</span>
+            <!--注册-->
             <a href="https://www.vue-js.com/signup" class="signup">注册</a>
         </mu-appbar>
         <div class="login-key">
             <mu-text-field label="请输入accessToken" v-model="val" :errorText="error" hintText="accessToken" type="password" labelFloat/><br>
-    
             <mu-raised-button @click="login" label="登录" class="demo-raised-button" primary/><br>
         </div>
         <div class="get-aT">
@@ -32,6 +33,7 @@
             }
         },
         methods: {
+            //这些是muse-ui里的组件方法啦
             showSnackbar() {
                 this.snackbar = true
                 if (this.snackTimer) clearTimeout(this.snackTimer)
@@ -43,6 +45,7 @@
                 this.snackbar = false
                 if (this.snackTimer) clearTimeout(this.snackTimer)
             },
+          //v-model双向数居绑定  输入值值 post给后端验证 accessToken 的正确性 并且用localstorage储存 没输入值或者输入错误值 给反馈
             login() {
                 let that = this
                 axios.post('https://www.vue-js.com/api/v1/accesstoken', {

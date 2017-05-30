@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <!--锚点定位 提高用户体验-->
         <mu-appbar class="header" :title="data.title">
             <mu-icon-button @click="goback" icon="arrow_back" slot="left" />
             <mu-icon-menu icon="more_vert" slot="right">
@@ -9,61 +10,61 @@
                 <mu-menu-item title="返回首页" to="/vue-home/dist" />
             </mu-icon-menu>
         </mu-appbar>
-          <div class="main">
-        <!--标题-->
-      
-        <div id="content-tip">
-            <span v-if="data.top">置顶</span>
-            <span v-else-if="data.good">精华</span>
-            <span v-else-if="data.tab === 'share'" :style="styleObj">分享</span>
-            <span v-else-if="data.tab === 'ask'" :style="styleObj">问答</span>
-            <span v-else-if="data.tab === 'job'" :style="styleObj">招聘</span>
-            <strong>  {{data.title}}  </strong>
-        </div>
-    
-        <!--内容相关-->
-        <div class="content-about">
-            <router-link :to="{path:'/vue-home/dist/people',query:{user:data.author.loginname}}" alt="user">
-                <img class="content-author-pic" v-if="data.author" :src="data.author.avatar_url" />
-            </router-link>
-            <span>作者：{{data.author.loginname}}</span>
-            <span>发表时间：{{data.create_at | formatDate}}</span><br>
-            <span>最后回复：{{data.last_reply_at | formatDate}}</span>
-            <span>浏览量：{{data.visit_count}}</span>
-            
-        </div>
-        <!--收藏-->
-       <div class="collect"> <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" /></div>
-        <!--正文 -->
-        
-        <div class="content-text" v-html="data.content"></div>
-        <!--评论区-->
-        <ul id="comments-main">
-            <li class="comments-num">{{data.replies.length}}条评论</li>
-            <li v-for="(list,index) in data.replies" :key="list.id">
-                <router-link :to="{path:'/vue-home/dist/people',query:{user:list.author.loginname}}" alt="user">
-                    <img v-if="list.author" :src="list.author.avatar_url" />
+        <div class="main">
+            <!--标题-->
+            <div id="content-tip">
+                <!--和首页同理实现的标签-->
+                <span v-if="data.top">置顶</span>
+                <span v-else-if="data.good">精华</span>
+                <span v-else-if="data.tab === 'share'" :style="styleObj">分享</span>
+                <span v-else-if="data.tab === 'ask'" :style="styleObj">问答</span>
+                <span v-else-if="data.tab === 'job'" :style="styleObj">招聘</span>
+                <strong>  {{data.title}}  </strong>
+            </div>
+            <!--内容相关-->
+            <div class="content-about">
+                <router-link :to="{path:'/vue-home/dist/people',query:{user:data.author.loginname}}" alt="user">
+                    <img class="content-author-pic" v-if="data.author" :src="data.author.avatar_url" />
                 </router-link>
-                <strong>{{list.author.loginname}}</strong>
-                <!--点赞-->
-                <span class="comments-peopele-ups">
-                 <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
-                      </span>
-                <!--时间-->
-                <span class="comments-peopele-time">{{list.create_at | formatDate}}</span><br>
-                <!--回复评论-->
-                <mu-icon @click="commentReply(index)" class="textsms" value="textsms" :size="16" color="#a9a9a9" />
-                <p v-html="list.content"></p>
-            </li>
-    
-        </ul>
-        <!--评论-->
-        <div id="comments-input">
-            <mu-text-field hintText="这里输入评论内容" multiLine :rows="3" :rowsMax="6" /><br/>
-            <mu-raised-button label="评论" class="demo-raised-button" primary/>
+                <span>作者：{{data.author.loginname}}</span>
+                <span>发表时间：{{data.create_at | formatDate}}</span><br>
+                <!--用 util>filter.js 里的formatData方法 转换时间格式-->
+                <span>最后回复：{{data.last_reply_at | formatDate}}</span>
+                <span>浏览量：{{data.visit_count}}</span>
+            </div>
+            <!--收藏-->
+            <!--用户登录状态才显示-->
+            <div class="collect">
+                <mu-checkbox v-if="accesstoken" v-model="collect" :label="collectText" class="demo-checkbox" uncheckIcon="favorite_border" checkedIcon="favorite" />
+            </div>
+            <!--正文 -->
+            <div class="content-text" v-html="data.content"></div>
+            <!--评论区-->
+            <ul id="comments-main">
+                <li class="comments-num">{{data.replies.length}}条评论</li>
+                <li v-for="(list,index) in data.replies" :key="list.id">
+                    <router-link :to="{path:'/vue-home/dist/people',query:{user:list.author.loginname}}" alt="user">
+                        <img v-if="list.author" :src="list.author.avatar_url" />
+                    </router-link>
+                    <strong>{{list.author.loginname}}</strong>
+                    <!--点赞-->
+                    <span class="comments-peopele-ups">
+                     <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
+                          </span>
+                    <!--时间-->
+                    <span class="comments-peopele-time">{{list.create_at | formatDate}}</span><br>
+                    <!--回复评论-->
+                    <mu-icon @click="commentReply(index)" class="textsms" value="textsms" :size="16" color="#a9a9a9" />
+                    <p v-html="list.content"></p>
+                </li>
+            </ul>
+            <!--评论-->
+            <div id="comments-input">
+                <mu-text-field hintText="这里输入评论内容" multiLine :rows="3" :rowsMax="6" /><br/>
+                <mu-raised-button label="评论" class="demo-raised-button" primary/>
+            </div>
+            <mu-toast v-if="!accesstoken" message="点赞评论请先登录" />
         </div>
-        <mu-toast v-if="!accesstoken" message="点赞评论请先登录" />
-          </div>
     </div>
 </template>
 
@@ -93,11 +94,12 @@
             this.getData()
             this.hasCollected()
         },
+        //v-model 双向数据绑定 collect
         watch: {
             collect: function(newVal) {
                 if (newVal) {
-                    this.collectOn()
-                    this.collectText = '取消收藏'
+                    this.collectOn() //执行收藏帖子的函数
+                    this.collectText = '取消收藏' //显示为 取消收藏
                 } else {
                     this.collectOff()
                     this.collectText = '收藏'
@@ -138,19 +140,18 @@
                     //  console.log(response.data)
                 })
             },
+            // 根据自己的用户信息id判断是否已收藏某篇帖子，以此决定该帖子的收藏显示状态
             hasCollected() {
                 if (this.accesstoken) {
                     let that = this
                     axios.get('https://www.vue-js.com/api/v1/user/' + that.loginname)
                         .then(function(response) {
                             let collecting = response.data.data.collect_topics
-                            //  console.log(collecting)
+                            console.log(collecting)
                             //此页面的id
                             let thisId = that.data.id
-                            //判断是否被收藏来双向处理页面收藏图标字体的状态
                             collecting.find(function(item) {
                                 if (item.id === thisId) {
-                                    that.collectText = '收藏'
                                     that.collect = true
                                 }
                             })
@@ -178,7 +179,7 @@
 <style lang="scss" scoped>
     @import '../assets/sass/_base.scss';
     .wrapper {
-      @include wrapper;
+        @include wrapper;
         #content-tip {
             position: relative;
             padding: 2rem;
@@ -226,8 +227,8 @@
             margin-top: 1.6rem;
             position: relative;
         }
-        .collect{
-            text-align:center;
+        .collect {
+            text-align: center;
         }
         .content-text {
             padding: 1rem;
