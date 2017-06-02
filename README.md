@@ -12,6 +12,8 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 
 >萌新通过这项目学习了很多东西，如果对您有帮助，请给萌新一个`star`以资鼓励，一起加油^ ^
 
+> 建议先去社区[注册](https://www.vue-js.com/signup)拿accesstoken登录体验(注册可以直接用github账号，挺快的)
+
 [效果预览](http://www.hxvin.me/vue-home/dist/)
 
 [项目API](https://www.vue-js.com/api/)
