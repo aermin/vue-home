@@ -59,11 +59,11 @@
     methods: {
       getData() {
         let that = this
-        let author_name = this.$route.query.user
+        let author_name = this.$route.query.user //$route:路由信息对象 query :路由信息对象的属性
          let url = 'https://www.vue-js.com/api/v1/user/' + author_name
         axios.get(url).then(function(response) {
             that.peopleUsg = response.data.data
-             console.log(that.peopleUsg)
+            //  console.log(that.peopleUsg)
           })
       },
       goback() {

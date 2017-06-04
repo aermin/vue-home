@@ -9,6 +9,10 @@
       <mu-tab value="ask" title="问答" />
       <mu-tab value="job" title="招聘" />
     </mu-tabs>
+    <div class="inloading" v-if="inloading">
+      Loading...
+    </div>
+
     <!--列表展示-->
     <mu-list>
       <div v-for="(item,index) in items">
@@ -51,6 +55,7 @@
     data() {
       return {
         loading: false,
+        inloading: false,
         scroller: null,
         nomore: false,
         activeTab: 'all', //当前选中tab项
@@ -62,7 +67,8 @@
         page: 1
       }
     },
-    // 生命周期 创建完毕
+    // 先导航和渲染组件，然后在组件的 created 钩子中获取数据
+     // 组件创建完后获取数据，
     created() {
       this.getData()
     },
@@ -82,14 +88,16 @@
       // 数据获取
       getData() {
         let that = this
+        that.inloading = true
         axios.get(this.url).then(function(response) {
           that.items = response.data.data
+          that.inloading=false
           // console.log(that.items)
         })
       },
       // 下拉刷新
       loadMore() {
-        if (!this.nomore) {
+        if (!this.nomore&&!this.inloading) {
           this.loading = true
           this.page += 1
           let url = 'https://www.vue-js.com/api/v1/topics?tab=all' + '&page=' + this.page

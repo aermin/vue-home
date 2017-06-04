@@ -21,8 +21,9 @@
                 <span v-else-if="data.tab === 'job'" :style="styleObj">招聘</span>
                 <strong>  {{data.title}}  </strong>
             </div>
-            <!--内容相关-->
+            <!--内容相关--> 
             <div class="content-about">
+                <!--路径的path+query =>/vue-home/dist/people?user=** 这里的user=** 是为让people组件或取user的值，根据值用axios抓数据后渲染页面 -->
                 <router-link :to="{path:'/vue-home/dist/people',query:{user:data.author.loginname}}" alt="user">
                     <img class="content-author-pic" v-if="data.author" :src="data.author.avatar_url" />
                 </router-link>
@@ -147,7 +148,7 @@
                     axios.get('https://www.vue-js.com/api/v1/user/' + that.loginname)
                         .then(function(response) {
                             let collecting = response.data.data.collect_topics
-                            console.log(collecting)
+                            // console.log(collecting)
                             //此页面的id
                             let thisId = that.data.id
                             collecting.find(function(item) {
