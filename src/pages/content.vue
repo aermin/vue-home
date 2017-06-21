@@ -21,7 +21,7 @@
                 <span v-else-if="data.tab === 'job'" :style="styleObj">招聘</span>
                 <strong>  {{data.title}}  </strong>
             </div>
-            <!--内容相关--> 
+            <!--内容相关-->
             <div class="content-about">
                 <!--路径的path+query =>/vue-home/dist/people?user=** 这里的user=** 是为让people组件或取user的值，根据值用axios抓数据后渲染页面 -->
                 <router-link :to="{path:'/vue-home/dist/people',query:{user:data.author.loginname}}" alt="user">
@@ -50,21 +50,32 @@
                     <strong>{{list.author.loginname}}</strong>
                     <!--点赞-->
                     <span class="comments-peopele-ups">
-                     <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
-                          </span>
+                                     <mu-icon  @click="good(index)" value="thumb_up" :size="16" color="#a9a9a9"  />{{list.ups.length}}
+                                          </span>
                     <!--时间-->
                     <span class="comments-peopele-time">{{list.create_at | formatDate}}</span><br>
-                    <!--回复评论-->
+                    <!--评论图标按钮-->
                     <mu-icon @click="commentReply(index)" class="textsms" value="textsms" :size="16" color="#a9a9a9" />
+                    <!--评论内容渲染-->
                     <p v-html="list.content"></p>
+                    <!--回复评论-->
+                    <!--判断用户是否已登录 reply_show是否为true 来决定是否显示评论框；这里用v-show是考虑到频繁点击评论 比v-if开销低-->
+                    <div v-if="accesstoken" v-show="list.reply_show" class="comment-reply">
+                        <mu-text-field v-model="commentReplyText" class="comment-reply-text" hintText="请输入评论" multiLine :rows="2" :rowsMax="6" fullWidth/>
+                        <mu-raised-button @click="commentReplyOn(index)" label="确认" class="demo-raised-button " primary />
+                        <mu-raised-button @click="commentReplyOf(index)" label="取消" class="demo-raised-button " primary/>
+                    </div>
                 </li>
             </ul>
             <!--评论-->
             <div id="comments-input">
-                <mu-text-field hintText="这里输入评论内容" multiLine :rows="3" :rowsMax="6" /><br/>
-                <mu-raised-button label="评论" class="demo-raised-button" primary/>
+                <mu-text-field v-model="commentText" hintText="这里输入评论内容" multiLine :rows="3" :rowsMax="6" /><br/>
+                <mu-raised-button @click="commentOn" label="评论" class="demo-raised-button" primary/>
             </div>
-            <mu-toast v-if="!accesstoken" message="点赞评论请先登录" />
+            <!--操作反馈-->
+            <mu-toast v-if="!accesstoken" message="点赞评论及收藏文章请先登录" />
+            <mu-toast v-if="commentSuccess" message="评论成功！！" @close="commentReplyOf(index)" />
+            <mu-toast v-if="commentFalse" message="评论失败！！" @close="commentReplyOf(index)" />
         </div>
     </div>
 </template>
@@ -85,7 +96,12 @@
                 },
                 collect: false,
                 loginname: '',
-                collectText: '收藏'
+                collectText: '收藏',
+                commentText: '',
+                commentReplyText: '',
+                // tip:'',
+                commentSuccess: false,
+                commentFalse: false
             }
         },
         created() {
@@ -108,6 +124,7 @@
             }
         },
         methods: {
+    
             getData() {
                 let id = this.$route.query.id
                 let that = this
@@ -135,11 +152,12 @@
             collectOff() {
                 let that = this
                 axios.post('https://www.vue-js.com/api/v1/topic/de_collect', {
-                    accesstoken: that.accesstoken,
-                    topic_id: that.data.id
-                }).then(function(response) {
-                    //  console.log(response.data)
-                })
+                        accesstoken: that.accesstoken,
+                        topic_id: that.data.id
+                    })
+                    .then(function(response) {
+                        //  console.log(response.data)
+                    })
             },
             // 根据自己的用户信息id判断是否已收藏某篇帖子，以此决定该帖子的收藏显示状态
             hasCollected() {
@@ -171,8 +189,78 @@
                         // console.log(response.data)
                         that.getData()
                     })
+            },
+            // 点击评论图标进行回复
+            commentReply(index) {
+                this.data.replies[index].reply_show = true
+                this.commentReplyText = '@' + this.data.replies[index].author.loginname + ' '
+            },
+            // 确认回复评论
+            commentReplyOn(index) {
+                let id = this.$route.query.id
+                let that = this
+                axios.post('https://www.vue-js.com/api/v1/topic/' + id + '/replies', {
+                        accesstoken: that.accesstoken,
+                        content: that.commentReplyText,
+                        reply_id: that.data.replies[index].id
+                    })
+                    .then(function(response) {
+                        that.commentSuccess = true
+                        if (that.toastTimer) clearTimeout(that.toastTimer)
+                        that.toastTimer = setTimeout(() => {
+                            that.commentSuccess = false
+                        }, 2000)
+                        //  重新加载数据 刷新页面
+                        that.getData()
+                    })
+                    .catch(function(error) {
+                        that.commentFalse = true
+                        if (that.toastTimer) clearTimeout(that.toastTimer)
+                        that.toastTimer = setTimeout(() => {
+                            that.commentFalse = false
+                        }, 2000)
+                    })
+            },
+            // 取消回复评论
+            commentReplyOf(index) {
+                let that = this
+                this.commentReplyText = ''
+                that.commentFalse = true
+                if (that.toastTimer) clearTimeout(that.toastTimer)
+                that.toastTimer = setTimeout(() => {
+                    that.commentFalse = false
+                }, 2000)
+                this.data.replies[index].reply_show = false
+            },
+            // 添加评论
+            commentOn() {
+                let id = this.$route.query.id
+                let that = this
+                axios.post('https://www.vue-js.com/api/v1/topic/' + id + '/replies', {
+                        accesstoken: that.accesstoken,
+                        content: that.commentText
+                    })
+                    // 评论成功
+                    .then(function(response) {
+                        that.commentSuccess = true
+                        if (that.toastTimer) clearTimeout(that.toastTimer)
+                        that.toastTimer = setTimeout(() => {
+                            that.commentSuccess = false
+                        }, 2000)
+                        //  重新加载数据 刷新页面
+                        that.getData()
+                        // 清空输入
+                        that.commentText = ''
+                    })
+                    // 评论失败
+                    .catch(function(error) {
+                        that.commentFalse = true
+                        if (that.toastTimer) clearTimeout(that.toastTimer)
+                        that.toastTimer = setTimeout(() => {
+                            that.commentFalse = false
+                        }, 2000)
+                    })
             }
-    
         }
     }
 </script>
@@ -263,6 +351,14 @@
                     position: relative;
                     font-size: 1.6rem;
                     bottom: 2.5rem;
+                }
+                .comment-reply {
+                    text-align: center;
+                    margin: 0.2rem;
+                    .comment-reply .demo-raised-button {
+                        width: 0.8rem;
+                        height: 1.6rem;
+                    }
                 }
             }
             .comments-peopele-ups {

@@ -21,7 +21,7 @@
     created() {
       this.facthData()
     },
-    // $route属性是响应式的，可以就使用一个 watcher去响应路由的改变
+    // $route:路由信息对象，属性是响应式的，可以使用一个 watcher去响应路由的改变
     watch: {
       '$route': 'facthData'
     },
