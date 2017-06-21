@@ -38,6 +38,8 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 - [ ] 发表评论
 - [ ] 回复评论
 - [ ] 发布主题（支持markdown格式）
+- [ ] 左右侧滑
+- [ ] 搜索功能
 
 ### 安装运行
 
@@ -78,9 +80,10 @@ npm run build --report
 * $ cd vue-home
 * $ npm install
 * $ npm run dev
+
 等写完项目后
 * $ npm run build
-* 
+
 >注意：npm run dev 之后 默认浏览器打开的是http://localhost:8080  请换成http://localhost:8080/vue-home/dist
 >如果你电脑的8080端口被占用，请congfig/index.js中找到`port: 8080`修改成8081或者其他可用的端口
 
