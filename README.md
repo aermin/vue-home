@@ -81,7 +81,7 @@ npm run build --report
 * $ npm install
 * $ npm run dev
 
-等写完项目后
+等写完项目后 打包上线
 * $ npm run build
 
 >注意：npm run dev 之后 默认浏览器打开的是http://localhost:8080  请换成http://localhost:8080/vue-home/dist
