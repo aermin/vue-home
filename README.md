@@ -34,10 +34,9 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 - [x] 个人中心
 - [x] 发表评论
 - [x] 回复评论
+- [x] 发布主题（支持markdown格式）
 
 > todo功能
-
-- [ ] 发布主题（支持markdown格式）
 - [ ] 左右侧滑
 - [ ] 搜索功能
 - [ ] vuex重构
@@ -204,3 +203,17 @@ html{
 ![vue-home/src/main.js图](http://upload-images.jianshu.io/upload_images/5287253-6dbc7c159543aefc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 图中有标识了哪些是用来干嘛的，分别是用MuseUI的添加之一；filters是用来把社区api数据中的时间格式转换成`*分钟前``*小时前``*天前`
+
+#### 关于新建主题功能
+
+api上写了需post
+
+title String 标题
+
+tab String 目前有 ask share job
+
+content String 主体内容
+
+* 记得还需要传递accesstoken的参数，不然会报403错误（资源不可用）
+
+markdown格式支持 直接 npm install marked --save  用法详见代码
