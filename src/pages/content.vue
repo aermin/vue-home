@@ -99,7 +99,6 @@
                 collectText: '收藏',
                 commentText: '',
                 commentReplyText: '',
-                // tip:'',
                 commentSuccess: false,
                 commentFalse: false
             }
