@@ -14,13 +14,13 @@ css用scss，flex布局，rem做移动端适配，最终效果web端移动端都
 
 > 建议先去社区[注册](https://www.vue-js.com/signup)拿accesstoken登录体验(注册可以直接用github账号，挺快的)
 
-[效果预览](http://www.hxvin.me/vue-home/dist/)
+[demo](http://www.hxvin.me/vue-home/dist/)
+
+[点击查看gig动图展示](http://ooytyiziz.bkt.clouddn.com/QQ20170623-230734-HD.gif)
 
 [项目API](https://www.vue-js.com/api/)
 ### 手机扫描查看效果
 ![手机扫描查看效果](https://github.com/Hxvin/vue-home/blob/master/src/assets/1495982696.png)
-
-[点击查看gig动图展示](http://ooytyiziz.bkt.clouddn.com/QQ20170623-230734-HD.gif)
 
 > 完成功能
 
