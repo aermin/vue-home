@@ -1,3 +1,6 @@
+### [点击加入vue-home的项目聊天群](https://im.aermin.top/group_chat/6d1172d0-60e8-11e9-a4ec-a5a0c435a9d7)
+
+
 ## vue-home
 
 >技术点 
